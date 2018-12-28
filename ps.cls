@@ -15,6 +15,7 @@
 \RequirePackage{titling}
 
 %% fonts and text styles
+\RequirePackage{lmodern}
 \RequirePackage{fouriernc}
 \RequirePackage{parskip}
 
@@ -42,7 +43,10 @@
   centernot,
   caption,
   subcaption,
-  enumitem
+  enumitem,
+  array,
+  booktabs,
+  minted,
 }
 
 % document setup
@@ -96,6 +100,17 @@
   colorlinks=true,
   urlcolor=blue!50!green,
   linkcolor=blue!50!green,
+}
+
+%% code listing styles
+\usemintedstyle{bw}
+
+%% tikz packages
+\usetikzlibrary{
+  circuits.logic.US,
+  circuits.logic.IEC,
+  circuits.ee,
+  circuits.ee.IEC,
 }
 
 % pset-related environments & commands
