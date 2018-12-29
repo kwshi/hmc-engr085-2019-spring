@@ -47,7 +47,9 @@
   array,
   booktabs,
   minted,
+  siunitx,
 }
+\RequirePackage[compatibility]{circuitikz}
 
 % document setup
 %% page dimensions
