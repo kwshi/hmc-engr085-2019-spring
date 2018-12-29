@@ -138,6 +138,12 @@
   tripoles/nmos/base height=.625,
 }
 
+%% siunitx options
+\sisetup{
+  per-mode=symbol,
+  detect-all,
+}
+
 % pset-related environments & commands
 \newenvironment{solution}{\begin{mdframed}}{\end{mdframed}}
 
