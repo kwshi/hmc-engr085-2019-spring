@@ -47,6 +47,8 @@
 \RequirePackage{booktabs}
 \RequirePackage{minted}
 \RequirePackage{siunitx}
+\RequirePackage{tabu}
+\RequirePackage{makecell}
 \RequirePackage[compatibility]{circuitikz}
 
 % document setup
