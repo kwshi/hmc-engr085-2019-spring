@@ -79,7 +79,7 @@
     \textbf{Problem Set \theps}
   }
   \rhead{{\small\mbox{\theauthor}}\\{\small\thecoauthor}}
-  \cfoot{\textsc{\thepage{} of \pageref{LastPage}}}
+  \cfoot{Page \thepage{} of \pageref{LastPage}}
   \lfoot{\small\textsc{\thedate}}
   \renewcommand{\headrulewidth}{0pt}
 }
