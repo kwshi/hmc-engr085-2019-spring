@@ -29,26 +29,24 @@
 \RequirePackage{mathtools, thmtools}
 
 %% utility packages
-\RequirePackage{
-  mdframed,
-  cancel,
-  lastpage,
-  multicol,
-  color,
-  tikz,
-  hyperref,
-  marginnote,
-  isomath,
-  nicematrix,
-  centernot,
-  caption,
-  subcaption,
-  enumitem,
-  array,
-  booktabs,
-  minted,
-  siunitx,
-}
+\RequirePackage{mdframed}
+\RequirePackage{cancel}
+\RequirePackage{lastpage}
+\RequirePackage{multicol}
+\RequirePackage{color}
+\RequirePackage{tikz}
+\RequirePackage{hyperref}
+\RequirePackage{marginnote}
+\RequirePackage{isomath}
+\RequirePackage{nicematrix}
+\RequirePackage{centernot}
+\RequirePackage{caption}
+\RequirePackage{subcaption}
+\RequirePackage{enumitem}
+\RequirePackage{array}
+\RequirePackage{booktabs}
+\RequirePackage{minted}
+\RequirePackage{siunitx}
 \RequirePackage[compatibility]{circuitikz}
 
 % document setup
