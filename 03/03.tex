@@ -12,12 +12,14 @@
   process are given in the table below.
   \begin{center}
     \begin{tabular}{c|cc}
-      \textbf{Cell}&\textbf{Propagation delay (\si{\ps})}&\textbf{Contamination delay (\si{\ps})}\\\midrule
-      NOT&6&4\\
-      NAND2&8&6\\
-      NOR2&10&8\\
+      \textbf{Cell}
+      &\textbf{Propagation Delay (\si{\ps})}
+      &\textbf{Contamination Delay (\si{\ps})}\\\midrule
+      NOT  &6 &4\\
+      NAND2&8 &6\\
+      NOR2 &10&8\\
       NAND3&10&8\\
-      NOR3&12&10
+      NOR3 &12&10
     \end{tabular}
   \end{center}
   Determine the propagation and contamination delays of the following
@@ -26,38 +28,45 @@
   What are the propagation and contamination delays of your optimized
   circuit?
   \begin{center}
-    \begin{tikzpicture}[circuit logic US, x=1.5cm, y=.5cm, huge circuit symbols]
+    \begin{tikzpicture}[circuit logic US, x=.5cm, y=.5cm, huge circuit symbols]
       \draw
 
       (0,0) node[nand gate, inputs=nnn](1-nand){}
-      (1,0) node[buffer gate, inputs=i] (1-not) {}
+      (1-nand.output) node[right=1, buffer gate, inputs=i] (1-not) {}
 
       let
       \p1 = ($(1-nand.input 1) - (1-nand.input 3)$)
       in
-      (2,-\y1) node[nand gate, inputs=nnn](2-nand){}
-      (3,-\y1) node[buffer gate, inputs=i] (2-not) {}
-      (4,{-2*\y1}) node[nand gate, inputs=nnn](3-nand){}
-      (5,{-2*\y1}) node[buffer gate, inputs=i] (3-not) {}
+      (1-not.output) ++(0,-\y1) node[right=1, nand gate, inputs=nnn](2-nand){}
+      (2-nand.output) node[right=1, buffer gate, inputs=i](2-not){}
 
-      (1-nand.input 1) -- +(-.25,0) node[left]{\(A\)}
-      (1-nand.input 3) -- +(-.25,0) node[left]{\(B\)}
-      (2-nand.input 3) -- +(-2.25,0) node[left]{\(C\)}
-      (3-nand.input 3) -- +(-4.25,0) node[left]{\(D\)}
+      (2-not.output) ++(0,-\y1) node[right=1, nand gate, inputs=nnn](3-nand){}
+      (3-nand.output) node[right=1, buffer gate, inputs=i](3-not){}
 
       (1-nand.output) -- (1-not.input)
-
-      let
-      \p1 = ($(1-not.output)!.5!(2-nand.input 1)$),
-      \p2 = ($(2-not.output)!.5!(3-nand.input 1)$)
-      in
-      (1-not.output) -| (\p1) |- (2-nand.input 1)
-      (2-not.output) -| (\p2) |- (3-nand.input 1)
-
       (2-nand.output) -- (2-not.input)
       (3-nand.output) -- (3-not.input)
 
-      (3-not.output) -- +(.25,0) node[right]{\(Y\)};
+      let
+      \p2 = ($(1-not.output)!.5!(2-nand.input 1)$),
+      \p3 = ($(2-not.output)!.5!(3-nand.input 1)$)
+      in
+      (1-not.output) -| (\p2) |- (2-nand.input 1)
+      (2-not.output) -| (\p3) |- (3-nand.input 1)
+
+      (1-nand.input 1) -- +(-.5,0) coordinate(A) node[left]{\(A\)}
+
+      let
+      \p4 = (A),
+      \p5 = (1-nand.input 3),
+      \p6 = (2-nand.input 3),
+      \p7 = (3-nand.input 3)
+      in
+      (\p5) -- (\x4,\y5) node[left]{\(B\)}
+      (\p6) -- (\x4,\y6) node[left]{\(C\)}
+      (\p7) -- (\x4,\y7) node[left]{\(D\)}
+
+      (3-not.output) -- +(.5,0) node[right]{\(Y\)};
     \end{tikzpicture}
   \end{center}
   \begin{solution}
