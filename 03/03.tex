@@ -1,0 +1,101 @@
+\documentclass{ps}
+
+\ps{3}
+\date{2019 January}
+\author{}
+\coauthor{}
+
+\begin{document}
+
+\begin{enumerate}
+\item Suppose propagation delays for a \SI{10}{\nm} integrated circuit
+  process are given in the table below.
+  \begin{center}
+    \begin{tabular}{c|cc}
+      \textbf{Cell}&\textbf{Propagation delay (\si{\ps})}&\textbf{Contamination delay (\si{\ps})}\\\midrule
+      NOT&6&4\\
+      NAND2&8&6\\
+      NOR2&10&8\\
+      NAND3&10&8\\
+      NOR3&12&10
+    \end{tabular}
+  \end{center}
+  Determine the propagation and contamination delays of the following
+  circuit.  Redesign it to accomplish the same function while
+  minimizing propagation delay, using only gates from the table above.
+  What are the propagation and contamination delays of your optimized
+  circuit?
+  \begin{center}
+    \begin{tikzpicture}[circuit logic US, x=1.5cm, y=.5cm, huge circuit symbols]
+      \draw
+
+      (0,0) node[nand gate, inputs=nnn](1-nand){}
+      (1,0) node[buffer gate, inputs=i] (1-not) {}
+
+      let
+      \p1 = ($(1-nand.input 1) - (1-nand.input 3)$)
+      in
+      (2,-\y1) node[nand gate, inputs=nnn](2-nand){}
+      (3,-\y1) node[buffer gate, inputs=i] (2-not) {}
+      (4,{-2*\y1}) node[nand gate, inputs=nnn](3-nand){}
+      (5,{-2*\y1}) node[buffer gate, inputs=i] (3-not) {}
+
+      (1-nand.input 1) -- +(-.25,0) node[left]{\(A\)}
+      (1-nand.input 3) -- +(-.25,0) node[left]{\(B\)}
+      (2-nand.input 3) -- +(-2.25,0) node[left]{\(C\)}
+      (3-nand.input 3) -- +(-4.25,0) node[left]{\(D\)}
+
+      (1-nand.output) -- (1-not.input)
+
+      let
+      \p1 = ($(1-not.output)!.5!(2-nand.input 1)$),
+      \p2 = ($(2-not.output)!.5!(3-nand.input 1)$)
+      in
+      (1-not.output) -| (\p1) |- (2-nand.input 1)
+      (2-not.output) -| (\p2) |- (3-nand.input 1)
+
+      (2-nand.output) -- (2-not.input)
+      (3-nand.output) -- (3-not.input)
+
+      (3-not.output) -- +(.25,0) node[right]{\(Y\)};
+    \end{tikzpicture}
+  \end{center}
+  \begin{solution}
+  \end{solution}
+
+\item Latches and Flip-Flops
+
+  Do Exercises 3.4 and 3.6 from the textbook.
+  \begin{solution}
+  \end{solution}
+
+\item Combinational and Sequential Logic
+
+  Do Exercise 3.18 from the textbook.
+  \begin{solution}
+  \end{solution}
+
+\item FSM design
+
+  Do Exercise 3.26 from the textbook.  Just sketch the state
+  transition diagram.  Don't do the complete design that is requested
+  in the problem.
+
+  \textit{Extra Credit}: Finish the complete design.  Don't start on
+  the extra credit until you've finished the rest of PS \theps.  You
+  do have other classes, and all humans need sleep.
+  \begin{solution}
+  \end{solution}
+
+\item Impact on society: Name two systems that you encounter in daily
+  life that are readily described as finite state machines.
+  \begin{solution}
+  \end{solution}
+\end{enumerate}
+
+How long did you spend on this problem set?  This will not count
+toward your grade but will help calibrate the workload.
+\begin{solution}
+\end{solution}
+
+\end{document}
