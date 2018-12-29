@@ -107,6 +107,8 @@
 
 %% tikz packages
 \usetikzlibrary{
+  calc,
+  positioning,
   circuits.logic.US,
   circuits.logic.IEC,
   circuits.ee,
@@ -115,12 +117,23 @@
 
 %% circuitikz options
 \ctikzset{
-  bipoles/length=.75cm,
+  bipoles/length=1cm,
   bipoles/thickness=1,
-  bipoles/vsourceam/width=1,
-  bipoles/vsourceam/height=1,
+  bipoles/resistor/width=.75,
+  bipoles/resistor/height=.125,
+  bipoles/diode/width=.25,
+  bipoles/diode/height=.25,
+  bipoles/vsourceam/width=.75,
+  bipoles/vsourceam/height=.75,
+  monopoles/ground/width=.25,
   tripoles/pmos/height=1,
+  tripoles/pmos/width=.5,
+  tripoles/pmos/gate height=.5,
+  tripoles/pmos/base height=.625,
   tripoles/nmos/height=1,
+  tripoles/nmos/width=.5,
+  tripoles/nmos/gate height=.5,
+  tripoles/nmos/base height=.625,
 }
 
 % pset-related environments & commands
