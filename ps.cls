@@ -115,6 +115,16 @@
   circuits.ee.IEC,
 }
 
+%% circuitikz options
+\ctikzset{
+  bipoles/length=.75cm,
+  bipoles/thickness=1,
+  bipoles/vsourceam/width=1,
+  bipoles/vsourceam/height=1,
+  tripoles/pmos/height=1,
+  tripoles/nmos/height=1,
+}
+
 % pset-related environments & commands
 \newenvironment{solution}{\begin{mdframed}}{\end{mdframed}}
 
