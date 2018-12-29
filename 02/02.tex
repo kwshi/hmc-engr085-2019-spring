@@ -54,20 +54,27 @@
   set.  The circuit is in a hot enclosure that might reach
   \SI{85}{\celsius}.
   \begin{center}
-    \begin{tikzpicture}[circuit logic US, huge circuit symbols, font=\small]
+    \begin{tikzpicture}[circuit logic US, font=\small]
       \draw
       (0,0) to[*american voltage source, l_=\SI{6}{\V}] (0,-3) node[sground]{}
       (0,0) to (4,0)
       (1,0) to[*nos] (1,-1) -- (1,-2) to[*american resistor, l^=\(R_1\)] (1,-3) node[sground]{}
       (2,0) to[*nos] (2,-1) -- (2,-2) to[*american resistor, l^=\(R_1\)] (2,-3) node[sground]{}
-      (4,-1.5) node[xor gate](xor){}
-      (1,-1) -- (2,-1) to[*short, l^=\(A\)] (3,-1) |- (xor.input 1) node[right]{1}
-      (2,-2) to[*short, l^=\(B\)] (3,-2) |- (xor.input 2) node[right]{2}
+
+      (4,-1.5) node[huge circuit symbols, xor gate, inputs=nn](xor){}
+
+      let \p1 = (xor.input 1) in
+      (1,\y1) -- +(1,0) to[edge label=\(A\)] (\p1) node[right=2pt]{1}
+      let \p1 = (xor.input 2) in
+      (2,\y1) to[edge label'=\(B\)] (\p1) node[right=2pt]{2}
+
       (4,0) -- (xor.north) node[above right]{14}
       (xor.south) node[below right]{7} to[*short] (4,-3) node[sground]{}
       (xor.output) node[left]{3} -- (6,-1.5) node[above]{\(Y\)}
-      (5,-1.5) to[*empty diode] (5,-2.25) to[*american resistor, l^=\(R_2\)] (5,-3) node[sground]{}
-      (6,0) node[below left]{74HC86};
+      (5,-1.5) to[*empty diode] (5,-2.25) to[*american resistor, l^=\(R_2\)] (5,-3) node[sground]{};
+
+      \path[logic gate anchors use bounding box]
+      (xor.north east) node[above right]{74HC86};
     \end{tikzpicture}
 
     %\includegraphics{figures/03.eps}
@@ -112,16 +119,18 @@
 
 \item Give the Boolean equation performed by the following gate.
   \begin{center}
-    \begin{tikzpicture}[font=\small, y=.75cm]
+    \begin{tikzpicture}[font=\small]
       \draw
       (0,0)   node[pmos, emptycircle](A1){}
       (0,-1)  node[pmos, emptycircle](B1){}
       (0,-2)  node[pmos, emptycircle](C1){}
       (1,-2)  node[pmos, emptycircle](D1){}
-      (1,-3)  node[nmos, emptycircle](D2){}
-      (-1,-4) node[nmos, emptycircle](A2){}
-      (0,-4)  node[nmos, emptycircle](B2){}
-      (1,-4)  node[nmos, emptycircle](C2){}
+
+      (1,-3)  node[nmos](D2){}
+      (-1,-4) node[nmos](A2){}
+      (0,-4)  node[nmos](B2){}
+      (1,-4)  node[nmos](C2){}
+
       (A1.B) node[left]{\(A\)}
       (B1.B) node[left]{\(B\)}
       (C1.B) node[left]{\(C\)}
@@ -132,7 +141,7 @@
       (D2.B) node[left]{\(D\)}
       (A1.C) -- (B1.E) (B1.C) -- (C1.E)
       (A1.E) |- (1,.5) -- (D1.E)
-      (C1.C) -- (0,-2.5) to[*short, -*] (1,-2.5) -- (2,-2.5) node[right]{\(Y\)}
+      (C1.C) -- (0,-2.5) to[*short, -*] (1,-2.5) -- (1.5,-2.5) node[right]{\(Y\)}
       (D1.C) -- (D2.C) (D2.E) -- (C2.C)
       (C2.C) -- (A2.C)
       (A2.E) to[*short, -*] (B2.E) node[sground]{} -- (C2.E);
@@ -173,20 +182,37 @@
   \begin{center}
     \begin{tikzpicture}[circuit logic US, font=\small, huge circuit symbols, scale=.5]
       \matrix[column sep=.5cm, row sep=.5cm]{
-        \node[nand gate](nand-ab){};\\
-        \node[nor gate](nor-bc){};&\node[nand gate, inputs=nnn](nand-all){};\\
-        \node[not gate](not-a){};\\
+        \node[nand gate, inputs=nnn, left](nand-ab){};\\
+        \node[nor gate, inputs=nnn, left](nor-bc){};&\node[nand gate, inputs=nnn](nand-all){};\\
+        \node[not gate, left](not-a){};\\
       };
+
       \draw
-      (nand-ab.input 1) -- +(-1,0) node[left]{\(A\)}
-      (nand-ab.input 2) -- +(-1,0) node[left]{\(B\)}
-      (nor-bc.input 1)  -- +(-1,0) node[left]{\(B\)}
-      (nor-bc.input 2)  -- +(-1,0) node[left]{\(C\)}
-      (not-a.input)     -- +(-1,0) node[left]{\(A\)}
+
+      let
+      \p1 = ($(nand-ab.input 1) + (-1,0)$),
+      \p2 = ($(nand-ab.input 1)$),
+      \p3 = ($(nand-ab.input 3)$),
+      \p4 = ($(nor-bc.input 1)$),
+      \p5 = ($(nor-bc.input 3)$),
+      \p6 = ($(not-a.input)$)
+      in
+      (\p2) -- (\x1,\y2) node[left]{\(A\)}
+      (\p3) -- (\x1,\y3) node[left]{\(B\)}
+      (\p4) -- (\x1,\y4) node[left]{\(B\)}
+      (\p5) -- (\x1,\y5) node[left]{\(C\)}
+      (\p6) -- (\x1,\y6) node[left]{\(A\)}
+
       (nand-all.output) -- +(1,0)  node[right]{\(Y\)}
-      (nand-ab.output) -- +(.5,0) |- (nand-all.input 1)
-      (nor-bc.output) -- (nand-all.input 2)
-      (not-a.output) -- +(.5,0) |- (nand-all.input 3);
+
+      let
+      \p1 = ($(nand-ab.output)!.5!(nand-all.input 1)$),
+      \p2 = ($(not-a.output)!.5!(nand-all.input 3)$)
+      in
+      (nand-ab.output) -| (\p1) |- (nand-all.input 1)
+      (not-a.output) -| (\p2) |- (nand-all.input 3)
+
+      (nor-bc.output) -- (nand-all.input 2);
     \end{tikzpicture}
 
     %\includegraphics{figures/08.eps}
