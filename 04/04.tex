@@ -1,0 +1,117 @@
+\documentclass{ps}
+
+\ps{4}
+\date{2019}
+\author{}
+\coauthor{}
+
+\begin{document}
+
+\begin{enumerate}
+\item Reconsider the circuit from PS3, with registers added.  What is
+  the minimum clock period for the circuit in the absence of clock
+  skew?  How much clock skew could the circuit endure before possibly
+  violating the hold time?
+  \begin{center}
+    \begin{tabular}{c|cccc}
+      \textbf{Cell}
+      &\textbf{\makecell{Propagation\\Delay (\si{\ps})}}
+      &\textbf{\makecell{Contamination\\Delay (\si{\ps})}}
+      &\textbf{\makecell{Setup\\Time (\si{\ps})}}
+      &\textbf{\makecell{Hold\\Time (\si{\ps})}}\\\midrule
+      NOT  &6 &4 \\\hline
+      NAND2&8 &6 \\\hline
+      NOR2 &10&8 \\\hline
+      NAND3&10&8 \\\hline
+      NOR3 &12&10\\\hline
+      Flop &20&15&10&5
+    \end{tabular}
+
+    \begin{tikzpicture}[circuit logic US, huge circuit symbols, x=.5cm, y=.5cm]
+      \draw
+      (0,0) node[nand gate, inputs=nnn](1-nand){}
+      (1-nand.output) node[right=1, buffer gate, inputs=i] (1-not) {}
+
+      let
+      \p1 = ($(1-nand.input 1) - (1-nand.input 3)$)
+      in
+      (1-not.output) ++(0,-\y1) node[right=1, nand gate, inputs=nnn](2-nand){}
+      (2-nand.output) node[right=1, buffer gate, inputs=i](2-not){}
+
+      (2-not.output) ++(0,-\y1) node[right=1, nand gate, inputs=nnn](3-nand){}
+      (3-nand.output) node[right=1, buffer gate, inputs=i](3-not){}
+
+      (1-nand.output) -- (1-not.input)
+      (2-nand.output) -- (2-not.input)
+      (3-nand.output) -- (3-not.input)
+
+      let
+      \p2 = ($(1-not.output)!.5!(2-nand.input 1)$),
+      \p3 = ($(2-not.output)!.5!(3-nand.input 1)$)
+      in
+      (1-not.output) -| (\p2) |- (2-nand.input 1)
+      (2-not.output) -| (\p3) |- (3-nand.input 1)
+
+      (1-nand.input 1) -- +(-1.5,0) coordinate(A)
+
+      let
+      \p4 = (A),
+      \p5 = (1-nand.input 3),
+      \p6 = (2-nand.input 3),
+      \p7 = (3-nand.input 3)
+      in
+      foreach \i in {5,6,7} {
+        (\p\i) -- (\x4,\y\i)
+      }
+
+      (3-not.output) -- +(1.5,0);
+
+      \draw[fill=white]
+      let
+      \p1 = ($(1-nand.input 1) - (1-nand.input 3)$),
+      \p2 = ($(A) + (0,-3*\y1) + (1,-.5)$)
+      in
+      (A) ++(.5,.5) rectangle (\p2)
+
+      (3-not.output) ++(.5,.5) rectangle +(.5,-1);
+
+      \newcommand{\clklabel}{
+        ++(.5,.5) -- ++(.25,-.25) -- +(.25,.25)
+        ++(0,.25) -- +(0,.5) node[above]{CLK}
+      }
+      \draw
+      (A) \clklabel
+      (3-not.output) \clklabel;
+    \end{tikzpicture}
+  \end{center}
+  \begin{solution}
+  \end{solution}
+
+\item Synchronizers
+
+  Do Exercise 3.36 from DDCA ARMed.
+  \begin{solution}
+  \end{solution}
+
+\item SystemVerilog
+
+  Do Exercises 4.2 and 4.13 from DDCA ARMed.  Use behavioral Verilog
+  for 4.13.
+  \begin{solution}
+  \end{solution}
+
+\item Impact on society: What mean time between failure would you
+  target for a synchronizer in a life-critical medical device?
+  Justify your choice.  If the only synchronizer element readily
+  available to you has a MTBF on \(10^9\) seconds, how could you
+  achieve your target?
+  \begin{solution}
+  \end{solution}
+\end{enumerate}
+
+How long did you spend on this problem set?  This will not count
+toward your grade but will help calibrate the workload.
+\begin{solution}
+\end{solution}
+
+\end{document}
