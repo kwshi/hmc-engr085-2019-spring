@@ -75,14 +75,81 @@
 \item Latches and Flip-Flops
 
   Do Exercises 3.4 and 3.6 from the textbook.
-  \begin{solution}
-  \end{solution}
+  \newcommand{\waveform}[1]{
+    foreach \x/\y in {#1} {
+      -- ++(\x,0) -- ++(.25,\y)
+    }
+  }
+  \newcommand{\inputwaveforms}{
+    \draw
+    (0,0) node[above]{CLK}
+    \waveform{
+      1.25/1,
+      1/-1,
+      1.75/1,
+      .625/-1,
+      1.75/1,
+      .875/-1,
+      .5/1,
+      2/-1,
+      1.25/1
+    }
+    -- +(1.25,0)
+
+    (0,-1.5) node[above]{D}
+    \waveform{
+      1.875/1,
+      1/-1,
+      .5/1,
+      .875/-1,
+      .875/1,
+      1.375/-1,
+      1.75/1,
+      .375/-1,
+      .375/1,
+      2.125/-1
+    }
+    -- +(.875,0);
+  }
+  \begin{description}
+  \item[3.4] Given the input waveforms shown in Figure 3.64 \figurebelow, sketch
+    the output, \(Q\), of a D latch.
+    \begin{center}
+      \begin{tikzpicture}[scale=2.54/4]
+        \inputwaveforms
+      \end{tikzpicture}
+    \end{center}
+    \begin{solution}
+    \end{solution}
+
+  \item[3.6] Given the input waveforms shown in Figure 3.64
+    \figurebelow, sketch the output, \(Q\), of a D flip-flop.
+    \begin{center}
+      \begin{tikzpicture}[scale=2.54/4]
+        \inputwaveforms
+      \end{tikzpicture}
+    \end{center}
+    \begin{solution}
+    \end{solution}
+  \end{description}
 
 \item Combinational and Sequential Logic
 
   Do Exercise 3.18 from the textbook.
-  \begin{solution}
-  \end{solution}
+  \begin{description}
+  \item[3.18] Which of the circuits in Figure 3.68 are synchronous
+    sequential circuits?  Explain.
+    \begin{center}
+      \begin{tabu}{rl@{\qquad}rl}
+        (a)&\includegraphics{figures/{ddca-3.68-a}.eps}&
+        (b)&\includegraphics{figures/{ddca-3.68-b}.eps}\\[1em]
+        (c)&\includegraphics{figures/{ddca-3.68-c}.eps}&
+        (d)&\includegraphics{figures/{ddca-3.68-d}.eps}
+      \end{tabu}
+    \end{center}
+    \begin{solution}
+    \end{solution}
+  \end{description}
 
 \item FSM design
 
@@ -93,8 +160,24 @@
   \textit{Extra Credit}: Finish the complete design.  Don't start on
   the extra credit until you've finished the rest of PS \theps.  You
   do have other classes, and all humans need sleep.
-  \begin{solution}
-  \end{solution}
+  \begin{description}
+  \item[3.26] You have been enlisted to design a soda machine
+    dispenser for your department lounge.  Sodas are partially
+    subsidized by the student chapter of the IEEE, so they cost only
+    25 cents.  The machine accepts nickels, dimes, and quarters.  When
+    enough coins have been inserted, it dispenses the soda and returns
+    any necessary change.  Design an FSM controller for the soda
+    machine.  The FSM inputs are \textit{Nickel}, \textit{Dime},
+    \textit{Quarter}, indicating which coin was inserted.  Assume that
+    exactly one coin is inserted on each cycle.  The outputs are
+    \textit{Dispense}, \textit{ReturnNickel}, \textit{ReturnDime},
+    \textit{ReturnTwoDimes}.  When the FSM reaches 25 cents, it
+    asserts \textit{Dispense} and the necessary return outputs
+    required to deliver the appropriate change.  Then it should be
+    ready to start accepting coins for another soda.
+    \begin{solution}
+    \end{solution}
+  \end{description}
 
 \item Impact on society: Name two systems that you encounter in daily
   life that are readily described as finite state machines.
