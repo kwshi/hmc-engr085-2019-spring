@@ -90,6 +90,14 @@
 \item Synchronizers
 
   Do Exercise 3.36 from DDCA ARMed.
+  \begin{description}
+  \item[3.36] A synchronizer is built from a pair of flip-flops with
+    \(t_\text{setup} = \SI{50}{\ps}\), \(T_0 = \SI{20}{\ps}\), and
+    \(\tau = \SI{30}{\ps}\).  It samples an asynchronous input that
+    changes \(10^8\) times per second.  What is the minimum clock
+    period of the synchronizer to achieve a mean time between failures
+    (MTBF) of 100 years?
+  \end{description}
   \begin{solution}
   \end{solution}
 
@@ -97,8 +105,21 @@
 
   Do Exercises 4.2 and 4.13 from DDCA ARMed.  Use behavioral Verilog
   for 4.13.
-  \begin{solution}
-  \end{solution}
+  \begin{description}
+  \item[4.2] Sketch a schematic of the circuit described by the
+    following HDL code.  Simplify the schematic so that it shows a
+    minimum number of gates.
+    \begin{center}
+      \twocolumnlisting
+      {SystemVerilog}{systemverilog}{code/4.2.sv}
+      {VHDL}{vhdl}{code/4.2.vhdl}
+    \end{center}
+    \begin{solution}
+    \end{solution}
+  \item[4.13] Write an HDL module for a 2:4 decoder.
+    \begin{solution}
+    \end{solution}
+  \end{description}
 
 \item Impact on society: What mean time between failure would you
   target for a synchronizer in a life-critical medical device?
