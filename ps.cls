@@ -49,6 +49,8 @@
 \RequirePackage{siunitx}
 \RequirePackage{tabu}
 \RequirePackage{makecell}
+\RequirePackage{changepage}
+\RequirePackage{longtable}
 \RequirePackage[compatibility]{circuitikz}
 
 % document setup
@@ -146,6 +148,18 @@
 
 % pset-related environments & commands
 \newenvironment{solution}{\begin{mdframed}}{\end{mdframed}}
+\newcommand{\twocolumnlisting}[6]{
+  \begin{tabular}{
+    p{\dimexpr.5\linewidth-2\tabcolsep-\arrayrulewidth}|
+    p{\dimexpr.5\linewidth-2\tabcolsep-\arrayrulewidth}
+    }
+    \toprule
+    \textbf{#1}&\textbf{#4}\\
+    \inputminted{#2}{#3}&\inputminted{#5}{#6}\\
+    \bottomrule
+  \end{tabular}
+}
+\newcommand{\figurebelow}{\textcolor{gray}{(figure below)}}
 
 % math commands
 \renewcommand{\vec}{\mathbfit}
