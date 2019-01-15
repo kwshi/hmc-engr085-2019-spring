@@ -1,0 +1,4 @@
+ADD  R0,  R4,  R9
+SUB  R0,  R0,  R2
+LDR  R1,  [R0, #60]
+AND  R2,  R1,  R0

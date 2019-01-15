@@ -1,0 +1,6 @@
+Loop
+CMP R1, R2
+BEQ Done
+ADD R1, R1, #1
+B Loop
+Done

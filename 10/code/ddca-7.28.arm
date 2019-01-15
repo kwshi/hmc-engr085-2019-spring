@@ -1,0 +1,5 @@
+MOV  R1,  #42
+SUB  R0,  R1,  #5
+LDR  R3,  [R0, #18]
+STR  R4,  [R1, #63]
+ORR  R2,  R0,  R3
