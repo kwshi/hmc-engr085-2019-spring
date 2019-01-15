@@ -95,7 +95,7 @@
 
 %% list styles
 \setlist[enumerate, 1]{label=\arabic*)}
-\setlist[enumerate, 2]{label=\Alph*)}
+\setlist[enumerate, 2]{label=\alph*)}
 \setlist[enumerate, 3]{label=\roman*.}
 \setlist[enumerate, 4]{label=\alph*)}
 
@@ -154,8 +154,10 @@
     p{\dimexpr.5\linewidth-2\tabcolsep-\arrayrulewidth}
     }
     \toprule
-    \textbf{#1}&\textbf{#4}\\
-    \inputminted{#2}{#3}&\inputminted{#5}{#6}\\
+    \textbf{#1}
+    &\textbf{#4}\\
+    \inputminted[fontsize=\footnotesize]{#2}{#3}
+    &\inputminted[fontsize=\footnotesize]{#5}{#6}\\
     \bottomrule
   \end{tabular}
 }
