@@ -1,1 +1,0 @@
-/home/kshi/documents/coursework/2-sophomore/spring/hmc-engr085/ps.cls

@@ -1,5 +1,5 @@
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{homework}[2018/12/26 E85 p-set class]
+\ProvidesClass{e85}[2019/02/02 E85 p-set and lab document class class]
 
 \LoadClass[twoside]{article}
 
@@ -69,7 +69,8 @@
 
 %% document metadata
 \newcommand{\thecourse}{E85: Digital Design and Computer Engineering}
-\newcommand{\ps}[1]{\newcommand{\theps}{#1}}
+\newcommand{\ps}[1]{\title{Problem Set #1}}
+\newcommand{\lab}[2]{\title{Lab #1: #2}}
 \newcommand{\thecoauthor}{}
 \newcommand{\coauthor}[1]{\renewcommand{\thecoauthor}{#1}}
 
@@ -78,7 +79,7 @@
   \fancyhf{}
   \chead{
     \textbf{\thecourse}\\
-    \textbf{Problem Set \theps}
+    \textbf{\thetitle}
   }
   \rhead{{\small\mbox{\theauthor}}\\{\small\thecoauthor}}
   \cfoot{Page \thepage{} of \pageref{LastPage}}
@@ -94,7 +95,7 @@
 }
 
 %% list styles
-\setlist[enumerate, 1]{label=\arabic*)}
+\setlist[enumerate, 1]{label=\arabic*), leftmargin=0pt}
 \setlist[enumerate, 2]{label=\alph*)}
 \setlist[enumerate, 3]{label=\roman*.}
 \setlist[enumerate, 4]{label=\alph*)}
