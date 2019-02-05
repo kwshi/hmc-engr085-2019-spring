@@ -243,3 +243,7 @@ TSWLatexianTemp*
 
 # ignore pdfs
 *.pdf
+
+# ignore custom generated output files
+*.out.pdf
+*.out.tex
