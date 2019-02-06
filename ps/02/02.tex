@@ -17,7 +17,9 @@
   \begin{center}
     \includegraphics{figures/01.eps}
   \end{center}
+
   \begin{solution}
+
   \end{solution}
 
 \item Referring to the logic level specifications in Tables eA.2 and
@@ -25,27 +27,45 @@
   \begin{enumerate}
   \item \label{part:what-could-go-wrong} What could go wrong if a
     74LS04 inverter drives a 74HC08 AND gate?
+
     \begin{solution}
+
     \end{solution}
+
   \item In light of your answer to Part
     \ref{part:what-could-go-wrong}, why does the HCT family exist?
+
     \begin{solution}
+
     \end{solution}
+
   \item
     \begin{enumerate}
     \item Can a 3.3V 74LVC32 gate reliably drive a 5V 74HC00?
+
       \begin{solution}
+
       \end{solution}
+
     \item Can a 3.3V 74LVC32 gate reliably drive a 5V 74HCT00?
+
       \begin{solution}
+
       \end{solution}
+
     \item Can a 74HC00 reliably drive a 3.3V 74LVC32?
+
       \begin{solution}
+
       \end{solution}
     \end{enumerate}
   \end{enumerate}
 
 \item Power consumption
+
+  Hint: refer to the Switches and Diodes Tutorial at the end of this
+  problem set if you are unfamiliar with electrical calculations for
+  these components.
 
   The following circuit turns on an LED when you press one button or
   another but not both.  The circuit operates directly from a 6V
@@ -56,10 +76,15 @@
   \begin{center}
     \begin{tikzpicture}[circuit logic US, font=\small]
       \draw
-      (0,0) to[*american voltage source, l_=\SI{6}{\V}] (0,-3) node[sground]{}
+      (0,0) to[*american voltage source, l_=\SI{6}{\V}]
+      (0,-3) node[sground]{}
       (0,0) to (4,0)
-      (1,0) to[*nos] (1,-1) -- (1,-2) to[*american resistor, l^=\(R_1\)] (1,-3) node[sground]{}
-      (2,0) to[*nos] (2,-1) -- (2,-2) to[*american resistor, l^=\(R_1\)] (2,-3) node[sground]{}
+      (1,0) to[*nos] (1,-1) --
+      (1,-2) to[*american resistor, l^=\(R_1\)]
+      (1,-3) node[sground]{}
+      (2,0) to[*nos] (2,-1) --
+      (2,-2) to[*american resistor, l^=\(R_1\)]
+      (2,-3) node[sground]{}
 
       (4,-1.5) node[huge circuit symbols, xor gate, inputs=nn](xor){}
 
@@ -69,9 +94,13 @@
       (2,\y1) to[edge label'=\(B\)] (\p1) node[right=2pt]{2}
 
       (4,0) -- (xor.north) node[above right]{14}
-      (xor.south) node[below right]{7} to[*short] (4,-3) node[sground]{}
-      (xor.output) node[left]{3} -- (6,-1.5) node[above]{\(Y\)}
-      (5,-1.5) to[*empty diode] (5,-2.25) to[*american resistor, l^=\(R_2\)] (5,-3) node[sground]{};
+      (xor.south) node[below right]{7} to[*short]
+      (4,-3) node[sground]{}
+      (xor.output) node[left]{3} --
+      (6,-1.5) node[above]{\(Y\)}
+      (5,-1.5) to[*empty diode]
+      (5,-2.25) to[*american resistor, l^=\(R_2\)]
+      (5,-3) node[sground]{};
 
       \path[logic gate anchors use bounding box]
       (xor.north east) node[above right]{74HC86};
@@ -113,112 +142,114 @@
     \end{solution}
   \end{enumerate}
 
-\item Sketch a transistor-level implementation of a 3-input NAND gate.
-  \begin{solution}
-  \end{solution}
-
-\item Give the Boolean equation performed by the following gate.
+\item Consider the following logic circuit:
   \begin{center}
-    \begin{tikzpicture}[font=\small]
-      \draw
-      (0,0)   node[pmos, emptycircle](A1){}
-      (0,-1)  node[pmos, emptycircle](B1){}
-      (0,-2)  node[pmos, emptycircle](C1){}
-      (1,-2)  node[pmos, emptycircle](D1){}
+    \begin{tikzpicture}[circuit logic US, node distance=.5 and 1,
+      junction/.style={circle, fill, inner sep=1pt}]
+      \node [and gate, inputs=nin] (and-2) {};
+      \node [above left=of and-2, inputs=in, or gate] (or-1) {};
+      \node [below left=of and-2, inputs=in, or gate] (or-2) {};
+      \node [above right=of and-2, inputs=in, or gate] (or-3) {};
+      \node [left=1.5 of or-1.input 2, inputs=in, and gate] (and-1) {};
 
-      (1,-3)  node[nmos](D2){}
-      (-1,-4) node[nmos](A2){}
-      (0,-4)  node[nmos](B2){}
-      (1,-4)  node[nmos](C2){}
+      \coordinate (A) at ($ (and-1.input 1) + (-3em,2em) $);
+      \coordinate (B) at ($ (A)!(and-1.input 2)!($ (A) + (0,-1) $) $);
+      \coordinate (C) at ($ (A)!(or-2.input 2)!(B) $);
+      \coordinate (Y) at ($ (or-3.output) + (1em,0) $);
 
-      (A1.B) node[left]{\(A\)}
-      (B1.B) node[left]{\(B\)}
-      (C1.B) node[left]{\(C\)}
-      (D1.B) node[left]{\(D\)}
-      (A2.B) node[left]{\(A\)}
-      (B2.B) node[left]{\(B\)}
-      (C2.B) node[left]{\(C\)}
-      (D2.B) node[left]{\(D\)}
-      (A1.C) -- (B1.E) (B1.C) -- (C1.E)
-      (A1.E) |- (1,.5) -- (D1.E)
-      (C1.C) -- (0,-2.5) to[*short, -*] (1,-2.5) -- (1.5,-2.5) node[right]{\(Y\)}
-      (D1.C) -- (D2.C) (D2.E) -- (C2.C)
-      (C2.C) -- (A2.C)
-      (A2.E) to[*short, -*] (B2.E) node[sground]{} -- (C2.E);
-    \end{tikzpicture}
+      \foreach \l in {A,B,C} {
+        \node [left] at (\l) {\(\l\)};
+      }
 
-    %\includegraphics{figures/05.eps}
-  \end{center}
-  \begin{solution}
-  \end{solution}
+      \node [right] at (Y) {\(Y\)};
 
-\item Give a minimal sum of products Boolean equation for the
-  following function.  Show how to implement the function with logic
-  gates and in Verilog.
-  \[
-    \begin{array}{ccc|c}
-      A&B&C&Y\\\midrule
-      0&0&0&1\\
-      0&0&1&1\\
-      0&1&0&1\\
-      0&1&1&0\\
-      1&0&0&0\\
-      1&0&1&0\\
-      1&1&0&0\\
-      1&1&1&0\\
-    \end{array}
-  \]
-  \begin{solution}
-  \end{solution}
-
-\item Give a minimal sum of products Boolean equation for the
-  following function.  Show how to implement the function with logic
-  gates and in Verilog.
-  \begin{solution}
-  \end{solution}
-
-\item Give the minimal sum-of-products equation for the following
-  circuit.
-  \begin{center}
-    \begin{tikzpicture}[circuit logic US, font=\small, huge circuit symbols, scale=.5]
-      \matrix[column sep=.5cm, row sep=.5cm]{
-        \node[nand gate, inputs=nnn, left](nand-ab){};\\
-        \node[nor gate, inputs=nnn, left](nor-bc){};&\node[nand gate, inputs=nnn](nand-all){};\\
-        \node[not gate, left](not-a){};\\
-      };
+      \foreach \a/\b/\t in {
+        or-1.output/and-2.input 1/.5,
+        or-2.output/and-2.input 3/.5,
+        and-2.output/or-3.input 2/.5} {
+        \draw (\a) -| ($ (\a)!\t!(\b) $) |- (\b);
+      }
 
       \draw
+      (and-1.output) -- (or-1.input 2);
 
-      let
-      \p1 = ($(nand-ab.input 1) + (-1,0)$),
-      \p2 = ($(nand-ab.input 1)$),
-      \p3 = ($(nand-ab.input 3)$),
-      \p4 = ($(nor-bc.input 1)$),
-      \p5 = ($(nor-bc.input 3)$),
-      \p6 = ($(not-a.input)$)
-      in
-      (\p2) -- (\x1,\y2) node[left]{\(A\)}
-      (\p3) -- (\x1,\y3) node[left]{\(B\)}
-      (\p4) -- (\x1,\y4) node[left]{\(B\)}
-      (\p5) -- (\x1,\y5) node[left]{\(C\)}
-      (\p6) -- (\x1,\y6) node[left]{\(A\)}
+      \draw
+      (A) -- +(1em,0)
+      coordinate [junction] (a) |-
+      (and-1.input 1);
 
-      (nand-all.output) -- +(1,0)  node[right]{\(Y\)}
+      \draw
+      (B) -- (and-1.input 2);
 
-      let
-      \p1 = ($(nand-ab.output)!.5!(nand-all.input 1)$),
-      \p2 = ($(not-a.output)!.5!(nand-all.input 3)$)
-      in
-      (nand-ab.output) -| (\p1) |- (nand-all.input 1)
-      (not-a.output) -| (\p2) |- (nand-all.input 3)
+      \draw
+      (C) -- (or-2.input 2);
 
-      (nor-bc.output) -- (nand-all.input 2);
+      \draw
+      (or-3.output) -- (Y);
+
+      \draw
+      ($ (B) + (1em, 0) $)
+      coordinate [junction] (b) |-
+      (or-2.input 1);
+
+      \draw
+      ($ ($ (B) + (1em,0) $)!(and-2.input 2)!($ (B) + (1em,-1) $) $)
+      coordinate [junction] --
+      (and-2.input 2);
+
+      \draw
+      ($ (C) + (2em,0) $)
+      coordinate [junction] (c) --
+      ($ (A) + (2em,1em) $) --
+      ($ ($ (A) + (0,1em) $)!(or-1)!($ (A) + (1,1em) $) $)
+      coordinate (cc) -|
+      ($ (cc)!.5!(or-3.input 1) $) |-
+      (or-3.input 1);
+
+      \draw
+      (a) -- ($ (a)!(and-1)!(A) $) coordinate (aa) -|
+      ($ (aa)!.5!(or-1.input 1) $) |- (or-1.input 1);
     \end{tikzpicture}
-
-    %\includegraphics{figures/08.eps}
   \end{center}
-  \begin{solution}
-  \end{solution}
+  \begin{enumerate}
+  \item Write the Boolean equation performed by the above diagram.
+
+    \begin{solution}
+
+    \end{solution}
+
+  \item Simplify the equation using Boolean identities.
+
+    \begin{solution}
+
+    \end{solution}
+
+  \item Write a truth table describing the circuit.
+
+    \begin{solution}
+
+    \end{solution}
+
+  \item Show how to implement the simplified function with logic
+    gates.
+
+    \begin{solution}
+
+    \end{solution}
+
+  \item Show how to implement the function in SystemVerilog.
+
+    \begin{solution}
+
+    \end{solution}
+
+  \item Sketch a transistor-level implementation of the simplified
+    function using CMOS transistors.
+
+    \begin{solution}
+
+    \end{solution}
+  \end{enumerate}
 
 \item Impact on Society: Integrated circuits have been following
   Moore's Law since 1965, with cost per transistor reducing
@@ -227,8 +258,11 @@
   reduction grinds to a halt by 2020, write a thoughtful paragraph
   predicting a significant impact on society caused by the end of
   Moore's Law.
+
   \begin{solution}
+
   \end{solution}
+
 \end{enumerate}
 
 How long did you spend on this problem set?  This will not count
