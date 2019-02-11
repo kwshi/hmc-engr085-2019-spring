@@ -15,7 +15,71 @@
   specification in Table eA.2 of the textbook.  Are they within the
   specifications?
   \begin{center}
-    \includegraphics{figures/01.eps}
+    %\includegraphics{figures/01.eps}
+    \begin{tikzpicture}[
+        drop/.style={
+          densely dotted,
+          thick,
+        },]
+      \begin{axis}[
+        grid=major,
+        grid style={
+          lightgray!50,
+        },
+        vtc/.style={
+          mark=*,
+          mark size=1pt,
+          thick,
+        },
+        xlabel=\(V_\text{in}\),
+        ylabel=\(V_\text{out}\),
+        title=\textbf{74LS04},
+        width=3in,
+        height=3in,
+        ymin=0,
+        ymax=5,
+        xmin=0,
+        xmax=5,
+        ]
+
+        \addplot [vtc] table {figures/01-74ls04-vtc.dat};
+
+        \coordinate (low) at (axis cs:1.499002901735069004e+00,1.209177879486560414e-01);
+        \coordinate (high) at (axis cs:5.972558900445404939e-01,3.947615196668849968e+00);
+
+        \draw (low) circle [radius=3pt];
+        \draw (high) circle [radius=3pt];
+
+        \draw [drop]
+        (low) -- ($ (axis cs:0,0)!(low)!(axis cs:1,0) $)
+        coordinate (high x);
+
+        \draw [drop]
+        (low) -- ($ (axis cs:0,0)!(low)!(axis cs:0,1) $)
+        coordinate (low y);
+
+        \draw [drop]
+        (high) -- ($ (axis cs:0,0)!(high)!(axis cs:1,0) $)
+        coordinate (low x);
+
+        \draw [drop]
+        (high) -- ($ (axis cs:0,0)!(high)!(axis cs:0,1) $)
+        coordinate (high y);
+      \end{axis}
+
+      \foreach \p/\l/\h/\v in {high x/H/1.5/1.50,low x/L/2.5/0.597} {
+        \draw [drop]
+        (\p) -- +(0,-\h)
+        node [below] {\(V_\mathrm{I\l} = \SI{\v}{\V}\)};
+      }
+
+      \foreach \p/\l/\v in {low y/L/0.121,high y/H/3.95} {
+        \draw [drop]
+        (\p) -- +(-1,0)
+        node [left] {\(V_\mathrm{O\l} = \SI{\v}{\V}\)};
+      }
+
+    \end{tikzpicture}
   \end{center}
 
   \begin{solution}
