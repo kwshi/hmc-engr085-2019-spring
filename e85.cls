@@ -71,8 +71,8 @@
 
 %% document metadata
 \newcommand{\thecourse}{E85: Digital Design and Computer Engineering}
-\newcommand{\ps}[1]{\title{Problem Set #1}}
-\newcommand{\lab}[2]{\title{Lab #1: #2}}
+\newcommand{\ps}[1]{\newcommand{\theps}{#1}\title{Problem Set \theps}}
+\newcommand{\lab}[2]{\newcommand{\thelab}{#1}\title{Lab \thelab: #2}}
 \newcommand{\thecoauthor}{}
 \newcommand{\coauthor}[1]{\renewcommand{\thecoauthor}{#1}}
 
