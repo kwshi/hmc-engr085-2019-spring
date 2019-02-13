@@ -114,6 +114,7 @@
 
 %% tikz packages
 \usetikzlibrary{
+  graphs,
   calc,
   positioning,
   circuits.logic.US,
