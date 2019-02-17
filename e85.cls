@@ -10,7 +10,6 @@
 \RequirePackage{microtype}
 
 %% for document setup
-\RequirePackage[subtle]{savetrees}
 \RequirePackage{geometry}
 \RequirePackage{fancyhdr}
 \RequirePackage{titling}
