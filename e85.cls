@@ -17,7 +17,7 @@
 
 %% fonts and text styles
 \RequirePackage{lmodern}
-\RequirePackage{fouriernc}
+%\RequirePackage{fouriernc}
 \RequirePackage{parskip}
 
 %% math
