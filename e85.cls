@@ -116,7 +116,9 @@
 %% tikz packages
 \usetikzlibrary{
   graphs,
+  automata,
   calc,
+  matrix,
   positioning,
   circuits.logic.US,
   circuits.logic.IEC,
