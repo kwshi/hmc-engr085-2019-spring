@@ -12,18 +12,19 @@
   skew?  How much clock skew could the circuit endure before possibly
   violating the hold time?
   \begin{center}
-    \begin{tabular}{c|cccc}
+    \begin{tabular}{|c|c|c|c|c|}
+      \hline
       \textbf{Cell}
-      &\textbf{\makecell{Propagation\\Delay (\si{\ps})}}
-      &\textbf{\makecell{Contamination\\Delay (\si{\ps})}}
-      &\textbf{\makecell{Setup\\Time (\si{\ps})}}
-      &\textbf{\makecell{Hold\\Time (\si{\ps})}}\\\midrule
-      NOT  &6 &4 \\\hline
-      NAND2&8 &6 \\\hline
-      NOR2 &10&8 \\\hline
-      NAND3&10&8 \\\hline
-      NOR3 &12&10\\\hline
-      Flop &20&15&10&5
+      & \textbf{\makecell{Propagation\\Delay (\si{\ps})}}
+      & \textbf{\makecell{Contamination\\Delay (\si{\ps})}}
+      & \textbf{\makecell{Setup\\Time (\si{\ps})}}
+      & \textbf{\makecell{Hold\\Time (\si{\ps})}} \\ \hline
+      NOT            & 6  & 4  &    &   \\ \hline
+      NAND (2-input) & 8  & 6  &    &   \\ \hline
+      NOR  (2-input) & 10 & 8  &    &   \\ \hline
+      NAND (2-input) & 10 & 8  &    &   \\ \hline
+      NOR  (2-input) & 12 & 10 &    &   \\ \hline
+      Flop           & 20 & 15 & 10 & 5 \\ \hline
     \end{tabular}
 
     \begin{tikzpicture}[circuit logic US, huge circuit symbols, x=.5cm, y=.5cm]
