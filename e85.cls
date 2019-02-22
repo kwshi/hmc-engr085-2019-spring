@@ -119,10 +119,84 @@
   calc,
   matrix,
   positioning,
+  backgrounds,
+  intersections,
   circuits.logic.US,
   circuits.logic.IEC,
   circuits.ee,
   circuits.ee.IEC,
+}
+
+%% tikz styles
+\tikzset{
+  dot/.style={
+    circle,
+    fill=black,
+    inner sep=1pt,
+  },
+  logic/.style={
+    circuit logic US,
+    tiny circuit symbols,
+    node distance=0em,
+    font=\small,
+    input matrix/.style={},
+    gate matrix/.style={
+      below right=of input matrix,
+      nodes={anchor=center},
+      row sep=.25em,
+      column sep=1em,
+      every circuit symbol/.style={
+        anchor=output,
+      },
+    },
+    output matrix/.style={
+      below right=of gate matrix,
+      nodes={anchor=center},
+    },
+    net/.style={
+      rounded corners=1pt,
+      preaction={
+        draw=white,
+        ultra thick,
+      },
+    },
+    input/.style={
+      net,
+      to path={
+        -- ($ (\tikztostart)!(\tikztotarget)!($ (\tikztostart)+(0,1) $) $)
+        coordinate [##1]
+        -- (\tikztotarget)
+      },
+    },
+    output/.style={
+      net,
+      to path={
+        -- ($ (\tikztostart)!(\tikztotarget)!($ (\tikztostart)+(1,0) $) $)
+        coordinate [##1]
+        -- (\tikztotarget)
+      },
+    },
+    connect/.style={
+      connect fixed,
+    },
+    connect proportional/.style={
+      net,
+      to path={
+        let \p1 = (\tikztostart), \p2 = (\tikztotarget) in
+        -- ({\x1 + (\x2-\x1)/4},\y1)
+        -- ({\x2 - (\x2-\x1)/4},\y2)
+        -- (\p2)
+      },
+    },
+    connect fixed/.style={
+      net,
+      to path={
+        -- +(2pt,0)
+        -- ($ (\tikztotarget) + (-2pt,0) $)
+        -- (\tikztotarget)
+      },
+    },
+  },
 }
 
 %% circuitikz options
@@ -172,6 +246,7 @@
 % math commands
 \renewcommand{\vec}{\mathbfit}
 \newcommand{\mat}{\mathbf}
+\newcommand{\CLK}{\mathrm{CLK}}
 
 %% common blackboard-bold symbols
 \newcommand{\ZZ}{\mathbb Z}
