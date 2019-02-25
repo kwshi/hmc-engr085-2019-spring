@@ -247,3 +247,18 @@ TSWLatexianTemp*
 # ignore custom generated output files
 *.out.pdf
 *.out.tex
+
+# ignore most quartus auto-generated project files
+**/quartus/*
+!*.qpf
+!*.qsf
+!*.mpf
+!*.tv
+!*.sv
+
+# un-ignore pdfs in attachments/figures
+!**/attachments/*.pdf
+!**/figures/*.pdf
+
+# re-ignore converted-to.pdfs
+*-converted-to.pdf
