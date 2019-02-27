@@ -31,6 +31,7 @@
 %% utility packages
 \RequirePackage{mdframed}
 \RequirePackage{cancel}
+\RequirePackage{soul}
 \RequirePackage{lastpage}
 \RequirePackage{multicol}
 \RequirePackage{color}
