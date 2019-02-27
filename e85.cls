@@ -156,6 +156,8 @@
     },
     net/.style={
       rounded corners=1pt,
+    },
+    overlap/.style={
       preaction={
         draw=white,
         ultra thick,
