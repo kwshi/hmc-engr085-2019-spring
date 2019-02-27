@@ -1,4 +1,4 @@
-\documentclass{e85}
+\documentclass{../../e85}
 
 \ps{5}
 \date{2019}
@@ -19,6 +19,7 @@
       {SystemVerilog}{systemverilog}{code/ddca-4.24.sv}
       {VHDL}{vhdl}{code/ddca-4.24.vhdl}
     \end{center}
+
     \begin{solution}
     \end{solution}
   \end{description}
@@ -26,39 +27,46 @@
 \item SystemVerilog Logic Design
 
   Design a serial (one bit at a time) two's complementer FSM with two
-  inputs, \(\mathrm{Start}\) and \(A\), and one output, \(Q\).  A
-  binary number of arbitrary length is provided to input \(A\),
-  starting with the least significant bit.  The corresponding bit of
-  the output appears at \(Q\) on the same cycle.  Start is asserted
-  for one cycle to initialize the FSM before the least significant bit
-  is provided.  You may find it helpful to try some cases by hand to
-  figure out how the output should depend on the input.  Express your
-  design in behavioral SystemVerilog.
+  inputs, \(\mathrm{Start}\) and \(A\), and one output, \(Q\).
+  \(\mathrm{Start}\) is asserted to initialize the FSM before the
+  least significant bit is provided.  In other words, develop the
+  machine that performs the two's complement operation on a binary
+  number of arbitrary length, starting with the least significant bit.
+  A one-bit input \(A\) simultaneously produces a one-bit output
+  \(Q\).  For example, given \mintinline{SystemVerilog}|4'b0010|,
+  \(A\) receives `\(0\)' then `\(1\)', `\(0\)', `\(0\)', respectively
+  and the FSM outputs `\(0\)', `\(1\)', `\(1\)', `\(1\)' with the
+  corresponding output bit appearing at \(Q\) on the same cycle.
+  Express your design in behavioral SystemVerilog. \\
+  \ul{Hint}: You may find it helpful to try some more cases by hand to
+  figure out how the output should \emph{depend} on the input.  You
+  may also want to look at Example 3.7 in Harris \& Harris.
+
   \begin{solution}
   \end{solution}
 
 \item Priority Circuit
 
   An \(N\)-input lowest priority circuit has input \(A_{N-1:0}\) and
-  output \(Y_{N-1:0}\).  \(Y_j = 1\) if \(A_j = 1\) and \(A_k = 0\)
-  for all \(k<j\).  In other words, it asserts a bit in \(Y\)
+  output \(Y_{N-1:0}\).  \(Y_j = 1\) only if \(A_k = 0\) for all
+  \(k<j\) and \(A_j = 1\).  In other words, it asserts a bit in \(Y\)
   corresponding to the \emph{least} significant bit asserted in \(A\).
 
-  Suppose each \(2\)-input gate has a delay of \SI{10}{\ps} and an
-  inverter has a delay of \SI{5}{\ps}.  Design a \(16\)-input lowest
-  priority circuit with a propagation delay not exceeding
-  \SI{55}{\ps}.  Sketch a schematic for your circuit.  If you are
-  spending too much time on this problem, you may relax the delay
-  requirement to \SI{180}{\ps} for partial credit.
+  Design a \(16\)-input lowest priority circuit with a propagation
+  delay not exceeding \SI{55}{\ps}.  Suppose each \(2\)-input gate has
+  a delay of \SI{10}{\ps} and an inverter has a delay of \SI{5}{\ps}.
+  Sketch a schematic for your circuit.  If you are spending too much
+  time on this problem, you may relax the delay requirement to
+  \SI{180}{\ps} for partial credit.  How would you design it?  Then,
+  increase the input size and look for any pattern.
+
   \begin{solution}
   \end{solution}
 
-\item Impact on society: Identify an item you use in your life that
-  you know or could reasonably expect was primarily implemented by
-  synthesizing hardware description language code onto a chip or FPGA
-  (as opposed to mainly writing code for a microcontroller, building
-  an analog electronic or mechanical device, etc.)  Why was HDL an
-  appropriate design methodology for the item?
+\item Impact on society: Identify a product that you use directly or
+  indirectly in your life that contains an FPGA.  Why would the
+  designers choose to use an FPGA in that product?
+
   \begin{solution}
   \end{solution}
 \end{enumerate}
