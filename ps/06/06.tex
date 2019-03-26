@@ -11,13 +11,16 @@
   \begin{enumerate}
   \item Write \(-9.0625\) as a 12-bit fixed-point number with 7
     integer and 5 fractional bits.
+
     \begin{solution}
     \end{solution}
+
   \item Compute the sum of the following IEEE single-precision numbers
     by hand.
     \[
-      \mathrm{0x41200000} + \mathrm{0x40D80000}
+      \mathtt{0x41200000} + \mathtt{0x40D80000}
     \]
+
     \begin{solution}
     \end{solution}
   \end{enumerate}
@@ -25,11 +28,14 @@
 \item Building Blocks
 
   You need to blink 27 LEDs in a mesmerizing pattern to create a nifty
-  display for the next Hackathon.  You want to generate the pattern
-  with a microcontroller that only has two free pins available.
-  Design some hardware that could go on a breadboard to receive inputs
-  from these two pins and control the LEDs.  Assume you have any
-  reasonable gates, registers, and other building blocks available.
+  display for the next Hackathon.  You want to generate arbitrary
+  patterns with a microcontroller that only has two free pins
+  available.  Design some hardware that could go on a breadboard or
+  FPGA to receive inputs from these two pins and control the LEDs.
+  Assume you have any reasonable gates, registers, and other building
+  blocks available.  (You are responsible only for the digital
+  hardware, not for the the microcontroller software.)
+
   \begin{solution}
   \end{solution}
 
@@ -39,15 +45,22 @@
   build each of the following functions?  Explain.
   \begin{enumerate}
   \item 2-input OR
+
     \begin{solution}
     \end{solution}
+
   \item 8-input AND
+
     \begin{solution}
     \end{solution}
+
   \item arbitrary FSM with 3 states, 1 input and 1 output
+
     \begin{solution}
     \end{solution}
+
   \item 8-bit counter with reset and enable
+
     \begin{solution}
     \end{solution}
   \end{enumerate}
@@ -56,80 +69,101 @@
 
   Answer the following questions to familiarize yourself with the
   STM32F042K6T6 microcontroller that we will be using.  See the
-  STM32F042x4 Datasheet on the class web pae.  For each question, note
-  the page number and symbol for the specification that informs your
-  answer.
+  STM32F042x4 Datasheet on the class web page.  For each question,
+  note the page number and symbol for the specification that informs
+  your answer.
   \begin{enumerate}
   \item What is the range of allowable digital supply voltages for
     normal operation?
+
     \begin{solution}
     \end{solution}
+
   \item If you accidentally connect a \SI{5}{\V} supply to the
     \(V_{DD}\), should you expect it to survive?
+
     \begin{solution}
     \end{solution}
+
     For the remainder of this question, assume \SI{3.3}{\V} operation.
+
   \item What is the typical \(V_{DD}\) power consumption in normal
     operating mode at \(f_c = \SI{48}{\MHz}\) with all features
     running full-bore?  How long could the chip run off a \SI{300}{\mA
       \hour} battery?
+
     \begin{solution}
     \end{solution}
+
   \item What is the typical \(V_{DD}\) power consumptiono in standby
     mode with all features turned off?  How long could the chip remain
     in standby using a \SI{300}{\mA \hour} battery?
+
     \begin{solution}
     \end{solution}
+
   \item What is the range of ambient temperatures over which the
     microontroller will work reliably?
+
     \begin{solution}
     \end{solution}
+
   \item What is \(V_{IL}\) and \(V_{IH}\) for a generic digital I/O
     pin?
+
     \begin{solution}
     \end{solution}
+
   \item What are \(V_{OL}\) and \(V_{OH}\) for a digital CMOS I/O pin,
     assuming a maximum output current of \SI{8}{\mA}?
+
     \begin{solution}
     \end{solution}
+
   \item If you use an I/O pin to drive an LED, what is the maximum
     current you can expect to provide?  What resistor should you
     choose to achieve that current?
+
     \begin{solution}
     \end{solution}
+
   \item What is the maximum input leakage current for a pin, assuming
     the input voltage does not exceed \(V_{DD}\)?  If you were to
     connect a DIP switch to other pin with a pullup resistor, how
     large could the resistor be before the leakage causes the input
     pin to reach an invalid logic level?
+
     \begin{solution}
     \end{solution}
+
   \item How much Flash memory for programs is on the chip?
+
     \begin{solution}
     \end{solution}
+
   \item How much SRAM for data storage is on the chip?
+
     \begin{solution}
     \end{solution}
+
   \item How many bits of resolution does the ADC have?  How many
     external input channels can it read?  What is the maximum sampling
     rate?
+
     \begin{solution}
     \end{solution}
   \end{enumerate}
 
-\item Impact on Society: Explain the impact of the C programming
-  language on modern society.  When did C become widely used?  What
-  languages were dominant before the rise of C, and how did C improve
-  on them?  For what kinds of programming is C typically used today?
-  Why does E85 teach C instead of another contemporary language
-  (e.g. Python, C++, Java)?  Name at least one major drawback of the C
-  language that has a concrete impact on geopolitics.
+\item Impact on Society: Research and describe the environmental life
+  cycle of an integrated circuit.  Where does electronic waste end up?
+
   \begin{solution}
   \end{solution}
 \end{enumerate}
 
 How long did you spend on this problem set?  This will not count
 toward your grade but will help calibrate the workload.
+
 \begin{solution}
 \end{solution}
 \end{document}
