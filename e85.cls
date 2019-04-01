@@ -31,6 +31,7 @@
 %% utility packages
 \RequirePackage{mdframed}
 \RequirePackage{cancel}
+\RequirePackage[hyphens]{url}
 \RequirePackage{soul}
 \RequirePackage{lastpage}
 \RequirePackage{multicol}
@@ -166,7 +167,7 @@
     input/.style={
       net,
       to path={
-        -- ($ (\tikztostart)!(\tikztotarget)!($ (\tikztostart)+(0,1) $) $)
+        -- (\tikztostart |- \tikztotarget)
         coordinate [##1]
         -- (\tikztotarget)
       },
@@ -174,8 +175,16 @@
     output/.style={
       net,
       to path={
-        -- ($ (\tikztostart)!(\tikztotarget)!($ (\tikztostart)+(1,0) $) $)
+        -- (\tikztostart -| \tikztotarget)
         coordinate [##1]
+        -- (\tikztotarget)
+      },
+    },
+    connect rect/.style={
+      net,
+      to path={
+        -- +(1pt,0) coordinate (t)
+        -- (t |- \tikztotarget)
         -- (\tikztotarget)
       },
     },
