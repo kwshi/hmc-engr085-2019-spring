@@ -2,36 +2,52 @@
 
 \ps{10}
 \date{2019 April 24 (Wednesday)}
-\author{}
+\author{Kye W. Shi}
 \coauthor{}
 
 \begin{document}
 \begin{enumerate}
 \item Modify the multicycle-cycle ARM processor to implement the BL
   instruction.  Mark up copies of the controller, main decoder FSM,
-  ALU decoder, and datapath (attached) {\figurebelow} to handle the
-  new instruction as simply as possible.  Name any control signals you
-  need to add.
-  \begin{center}
-    \includegraphics[width=\linewidth]
-    {figures/ddca-complete-multicycle-processor.eps}
-  \end{center}
+  ALU decoder, and datapath (attached) to handle the new instruction
+  as simply as possible.  Name any control signals you need to add.
 
   \begin{solution}
+    \begin{center}
+      \includegraphics[width=\linewidth]
+      {figures/1-bl/ddca-multicycle-datapath.pdf}
+
+      \includegraphics[width=\linewidth]
+      {figures/1-bl/ddca-multicycle-control-unit.pdf}
+
+      \includegraphics
+      {figures/1-bl/ddca-multicycle-fsm.pdf}
+
+      \includegraphics
+      {figures/1-bl/ddca-alu-decoder-truth-table.pdf}
+    \end{center}
   \end{solution}
 
 \item Goliath Corp claims to have a patent on a three-ported register
   file.  Rather than fighting Goliath in Court, you offer to design a
   newe register file with only two ports.  Port 1 can be read or
   written, and port 2 is read-only.  Redesign the multicycle datapath
-  and controller (attached) {\figurebelow} to use your new register
-  file.
-  \begin{center}
-    \includegraphics[width=\linewidth]
-    {figures/ddca-multicycle-control-unit.eps}
-  \end{center}
+  and controller (attached) to use your new register file.
 
   \begin{solution}
+    \begin{center}
+      \includegraphics[width=\linewidth]
+      {figures/2-register/ddca-multicycle-datapath.pdf}
+
+      \includegraphics[width=\linewidth]
+      {figures/2-register/ddca-multicycle-control-unit.pdf}
+
+      \includegraphics
+      {figures/2-register/ddca-multicycle-fsm.pdf}
+
+      \includegraphics
+      {figures/2-register/ddca-alu-decoder-truth-table.pdf}
+    \end{center}
   \end{solution}
 
 \item How long would your processor from the previous question take to
@@ -63,6 +79,10 @@
   \item[7.30] Using a diagram similar to Figure 7.53 \figurebelow,
     show the forwarding and stalls needed to execute the following
     instructions on the pipelined ARM processor.
+
+    \begin{center}
+      \includegraphics{{figures/ddca-7.53-pipeline-stall}.pdf}
+    \end{center}
 
     \inputminted{text}{code/ddca-7.30.arm}
 

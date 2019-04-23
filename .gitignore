@@ -257,8 +257,8 @@ TSWLatexianTemp*
 !*.sv
 
 # un-ignore pdfs in attachments/figures
-!**/attachments/*.pdf
-!**/figures/*.pdf
+!**/attachments/**/*.pdf
+!**/figures/**/*.pdf
 
 # re-ignore converted-to.pdfs
 *-converted-to.pdf
